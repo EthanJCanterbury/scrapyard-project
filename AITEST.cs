@@ -42,7 +42,7 @@ public class AITEST : MonoBehaviour
 
     void Awake()
     {
-        prompt = File.ReadAllText("E:/justdab/Unityprojects/PassionFruits/Assets/chatPrompt.txt");
+        prompt = File.ReadAllText(Application.dataPath + "/chatPrompt.txt");
         Debug.Log("awake");
         StartCoroutine("GPTSTART");
     }
