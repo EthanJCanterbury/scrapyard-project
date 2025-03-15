@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Text;
-using System.IO;
 
 public class AITEST : MonoBehaviour
 {
     [SerializeField] string prompt;
+	[SerializeField] string UserInput;
+	[SerializeField] string CurrentArgument;
+	[SerializeField] string ChatHistory;
     private string apiURL = "https://api.groq.com/openai/v1/chat/completions";
     private string apiKEY = "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";
 
-    IEnumerator GPTSTART()
+    IEnumerator Start()
     {
         string jsonPayload = "{\"model\": \"llama-3.3-70b-versatile\", \"messages\": [{\"role\": \"user\", \"content\": \"" + prompt + "\"}]}";
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonPayload);
@@ -42,8 +44,7 @@ public class AITEST : MonoBehaviour
 
     void Awake()
     {
-        prompt = File.ReadAllText(Application.dataPath + "/chatPrompt.txt");
         Debug.Log("awake");
-        StartCoroutine("GPTSTART");
+        StartCoroutine(Start());
     }
 }
